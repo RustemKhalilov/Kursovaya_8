@@ -1,12 +1,22 @@
 from rest_framework import serializers
 
 from habits.models import Habits
-from habits.validators import HabitsDurationValidator, validate_related_or_prize, validate_related_is_nice, \
-    validate_nice_navent_prize_and_related, periodicy_is_often_then_once_a_week, HabitsPeriodicValidator
+from habits.validators import (
+    HabitsDurationValidator,
+    validate_related_or_prize,
+    validate_related_is_nice,
+    validate_nice_navent_prize_and_related,
+    periodicy_is_often_then_once_a_week,
+    HabitsPeriodicValidator,
+)
 
 
 class HabitSerializer(serializers.ModelSerializer):
-    validators = [HabitsDurationValidator(field="duration"), HabitsPeriodicValidator(field="periodicity")]
+    validators = [
+        HabitsDurationValidator(field="duration"),
+        HabitsPeriodicValidator(field="periodicity"),
+    ]
+
     # при создании и редаткировании полей отрабатывает метод валидации полей
     # на вход он забирает модель, оттуда по имени забирает поле, далее применяется правило валидации
     class Meta:
@@ -24,7 +34,9 @@ class HabitSerializer(serializers.ModelSerializer):
         """
 
         message = validate_related_or_prize(data) + validate_related_is_nice(data)
-        message += validate_nice_navent_prize_and_related(data) + periodicy_is_often_then_once_a_week(data)
+        message += validate_nice_navent_prize_and_related(
+            data
+        ) + periodicy_is_often_then_once_a_week(data)
 
         if message:
             raise serializers.ValidationError(message)

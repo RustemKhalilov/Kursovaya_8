@@ -15,18 +15,18 @@ class HomeView(TemplateView):
     """
     Контроллер главной страницы сайта
     """
-    template_name = 'habits/index.html'
+
+    template_name = "habits/index.html"
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
         habits = Habits.objects.all()
-        context_data['all_habits'] = habits.count()
+        context_data["all_habits"] = habits.count()
         return context_data
 
 
 class HabitsCreateAPIView(generics.CreateAPIView):
-    """Создание привычки для авторизованного пользователя
-    """
+    """Создание привычки для авторизованного пользователя"""
 
     serializer_class = HabitSerializer
     queryset = Habits.objects.all()

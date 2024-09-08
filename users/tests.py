@@ -15,7 +15,7 @@ class UserTestCase(APITestCase):
             email="user2@list.ru",
             password="qwerty12345",
             tg_chat_id="616492316",
-            time_offset=3
+            time_offset=3,
         )
 
         self.client.force_authenticate(user=self.user)
@@ -28,7 +28,7 @@ class UserTestCase(APITestCase):
             "email": "test3@list.ru",
             "password": "qwerty12345",
             "tg_chat_id": "616492316",
-            "is_superuser": "False"
+            "is_superuser": "False",
         }
 
         response = self.client.post(url, data=data)
@@ -39,8 +39,10 @@ class UserTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(data.get("email"), "test3@list.ru")
         print()
-        self.assertEqual(data.get("password"), data["password"])# тут вот вопросик в профиле пользователя пароль  другой длинный типа
-        #'pbkdf2_sha256$720000$ISaJFjIcTo9gl5bt3Z9HFh$Y5C/f0g5e8EiyEPBzQJq5RPTtBODbStu1KAAp9meCpo=' как вернуть нужный нам пароль в тесте да и вообще
+        self.assertEqual(data.get("password"), data["password"])
+        # тут вот вопросик в профиле пользователя пароль  другой длинный типа
+        # 'pbkdf2_sha256$720000$ISaJFjIcTo9gl5bt3Z9HFh$Y5C/f0g5e8EiyEPBzQJq5RPTtBODbStu1KAAp9meCpo='
+        # как вернуть нужный нам пароль в тесте да и вообще
         self.assertEqual(data.get("tg_chat_id"), "616492316")
         self.assertEqual(data.get("is_superuser"), None)
 
@@ -52,7 +54,7 @@ class UserTestCase(APITestCase):
             "email": "test3@list.ru",
             "password": "qwerty12345",
             "is_superuser": "False",
-            "time_offset": 3
+            "time_offset": 3,
         }
 
         response = self.client.post(url, data=data)
@@ -76,7 +78,8 @@ class UserTestCase(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(data.get("email"), "user2@list.ru")
-        self.assertEqual(data.get("password"), 'qwerty12345') # А тут нормальный пароль возвращает. Почему??
+        self.assertEqual(data.get("password"), "qwerty12345")
+        # А тут нормальный пароль возвращает. Почему??
         self.assertEqual(data.get("tg_chat_id"), "616492316")
         self.assertEqual(data.get("is_superuser"), None)
 

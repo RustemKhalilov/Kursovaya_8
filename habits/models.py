@@ -21,7 +21,10 @@ class Habits(models.Model):
     )
 
     owner = models.ForeignKey(
-        AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Пользователь", **NULLABLE
+        AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name="Пользователь",
+        **NULLABLE,
     )
     place = models.CharField(max_length=140, verbose_name="Место")
     time = models.TimeField(verbose_name="Время, когда надо выполнить привычку")
@@ -30,10 +33,11 @@ class Habits(models.Model):
     )
     utc_time = models.TimeField(
         verbose_name="Время исполнения привычки в формате UTC, вычисляется автоматически по time_offset пользователя",
-        **NULLABLE
+        **NULLABLE,
     )
     weekday_offset = models.IntegerField(
-        default=0, verbose_name="Смещение дня недели относительно UTC. Заполняется автоматически."
+        default=0,
+        verbose_name="Смещение дня недели относительно UTC. Заполняется автоматически.",
     )
     is_nice = models.BooleanField(
         default=True, verbose_name="Приятная", choices=IS_NICE_CHOICES
@@ -53,13 +57,27 @@ class Habits(models.Model):
         default=True, verbose_name="Публичная", choices=PUBLIC_CHOICES
     )
     # Дни недели
-    monday = models.BooleanField(default=True, verbose_name="Понедельник", choices=DAY_OF_WEEK_CHOICES)
-    tuesday = models.BooleanField(default=True, verbose_name="Вторник", choices=DAY_OF_WEEK_CHOICES)
-    wednesday = models.BooleanField(default=True, verbose_name="Среда", choices=DAY_OF_WEEK_CHOICES)
-    thursday = models.BooleanField(default=True, verbose_name="Четверг", choices=DAY_OF_WEEK_CHOICES)
-    friday = models.BooleanField(default=True, verbose_name="Пятница", choices=DAY_OF_WEEK_CHOICES)
-    saturday = models.BooleanField(default=True, verbose_name="Суббота", choices=DAY_OF_WEEK_CHOICES)
-    sunday = models.BooleanField(default=True, verbose_name="Воскресенье", choices=DAY_OF_WEEK_CHOICES)
+    monday = models.BooleanField(
+        default=True, verbose_name="Понедельник", choices=DAY_OF_WEEK_CHOICES
+    )
+    tuesday = models.BooleanField(
+        default=True, verbose_name="Вторник", choices=DAY_OF_WEEK_CHOICES
+    )
+    wednesday = models.BooleanField(
+        default=True, verbose_name="Среда", choices=DAY_OF_WEEK_CHOICES
+    )
+    thursday = models.BooleanField(
+        default=True, verbose_name="Четверг", choices=DAY_OF_WEEK_CHOICES
+    )
+    friday = models.BooleanField(
+        default=True, verbose_name="Пятница", choices=DAY_OF_WEEK_CHOICES
+    )
+    saturday = models.BooleanField(
+        default=True, verbose_name="Суббота", choices=DAY_OF_WEEK_CHOICES
+    )
+    sunday = models.BooleanField(
+        default=True, verbose_name="Воскресенье", choices=DAY_OF_WEEK_CHOICES
+    )
 
     is_nice = models.BooleanField(
         default=True, verbose_name="Приятная", choices=IS_NICE_CHOICES
@@ -85,4 +103,3 @@ class Habits(models.Model):
         verbose_name = "Привычка"
         verbose_name_plural = "Привычки"
         ordering = ["-id"]
-

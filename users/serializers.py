@@ -8,19 +8,24 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        #fields = "__all__"
+        # fields = "__all__"
         fields = ("email", "first_name", "last_name", "password", "tg_chat_id")
-        #extra_kwargs = {'password': {'write_only': True}}
-
-    # def create(self, validated_data):
-    #     user = User()
-    #     user.set_password()
-    #     user.save()
-    #     return user
 
 
 class UserLimitedSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ("email", "first_name", "last_name", "tg_nick", "tg_chat_id", "last_login",
-                  "avatar", "date_joined", "is_superuser", "is_staff", "is_active", "time_offset")
+        fields = (
+            "email",
+            "first_name",
+            "last_name",
+            "tg_nick",
+            "tg_chat_id",
+            "last_login",
+            "avatar",
+            "date_joined",
+            "is_superuser",
+            "is_staff",
+            "is_active",
+            "time_offset",
+        )

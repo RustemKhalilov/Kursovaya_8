@@ -22,7 +22,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("place", models.CharField(max_length=140, verbose_name="Место")),
+                (
+                    "place",
+                    models.CharField(max_length=140, verbose_name="Место"),
+                ),
                 (
                     "time",
                     models.TimeField(
@@ -32,7 +35,8 @@ class Migration(migrations.Migration):
                 (
                     "action",
                     models.CharField(
-                        max_length=140, verbose_name="Действие, которое надо сделать"
+                        max_length=140,
+                        verbose_name="Действие, которое надо сделать",
                     ),
                 ),
                 (
@@ -40,7 +44,9 @@ class Migration(migrations.Migration):
                     models.TimeField(
                         blank=True,
                         null=True,
-                        verbose_name="Время исполнения привычки в формате UTC, вычисляется автоматически по time_offset пользователя",
+                        verbose_name="Время исполнения привычки в формате UTC,"
+                                     " вычисляется автоматически по "
+                        "time_offset пользователя",
                     ),
                 ),
                 (
@@ -53,7 +59,8 @@ class Migration(migrations.Migration):
                 (
                     "periodicity",
                     models.SmallIntegerField(
-                        default=1, verbose_name="Периодичность (в днях) - от 1 до 7"
+                        default=1,
+                        verbose_name="Периодичность (в днях) - от 1 до 7",
                     ),
                 ),
                 (

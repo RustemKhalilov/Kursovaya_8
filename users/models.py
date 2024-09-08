@@ -44,7 +44,10 @@ class User(AbstractUser):
         unique=True, verbose_name="Почта", help_text="Укажите почту"
     )
     phone = models.CharField(
-        max_length=35, **NULLABLE, verbose_name="Телефон", help_text="Укажите телефон"
+        max_length=35,
+        **NULLABLE,
+        verbose_name="Телефон",
+        help_text="Укажите телефон",
     )
     city = models.CharField(
         max_length=150,
@@ -73,7 +76,7 @@ class User(AbstractUser):
     time_offset = models.IntegerField(
         default=3,
         verbose_name="Смещение часового пояса",
-        help_text="От -12 до +14, по умолчанию UTC+3 (Московское время)"
+        help_text="От -12 до +14, по умолчанию UTC+3 (Московское время)",
     )
 
     USERNAME_FIELD = "email"
