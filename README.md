@@ -122,6 +122,29 @@ celery -A config worker --beat --scheduler django --loglevel=info
 
 coverage run --source='.' manage.py test
 
+# **_Инструкция по запуску_**
+Настройте свой сервер (система Ubuntu 22.04)
+
+Создайте на сервере ssh ключ, запульте из репозитория на github
+
+Склонируйте проект: git@github.com:RustemKhalilov/Kursovaya_8.git
+
+Настройте демон
+
+Настройте Nginx
+
+
+При необходимости прописать в config/settings.py адрес сервера в ALLOWED_HOSTS = [<адрес сервера>]
+
+Создайте на сервере в корне проекта файл .env по образцу .env-sample
+
+Для запуска локально поменяйте параметр config/settings.py ENV_TYPE=TEST на  ENV_TYPE=local
+
+На сервере должен быть установлен Docker и docker-compose (команда apt-install docker docker-compose)
+
+Создание и последующий запуск контейнера командой docker-compose up -d --build, Либо docker-compose build, а затем docker-compose up -d
+
+
 Предварительно создайте файл .env
 Заполните по образцу из файла .env.sample
 Для запуска проекта используйте команду
